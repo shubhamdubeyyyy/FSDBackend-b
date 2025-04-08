@@ -7,7 +7,7 @@ const View = () => {
         handleview();
     },[])
     const handleview= async () => {
-        const res=await axios.get('http://localhost:9000/users');
+        const res=await axios.get('https://fsdbackend-b-1.onrender.com/users');
         setUsers(res.data);
         console.log(users);
     }
@@ -15,7 +15,7 @@ const View = () => {
   return (
     <div>
         <h1>List of Registered Users</h1>
-        <table style={{width: '100%',border: '3px solid yellowgreen',backgroundColor: 'greenyellow'}}>
+        <table style={{width: '100%',border: '2px solid yellowgreen',backgroundColor: 'greenyellow'}}>
             <thead>
                 <tr>
                     <th>ID</th>
