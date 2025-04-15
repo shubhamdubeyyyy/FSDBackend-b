@@ -1,36 +1,46 @@
-import React from 'react'
-import axios from 'axios'
+import React from 'react';
+import axios from 'axios';
+
 const Update = () => {
-    const handleupdate = async (e) => {
-        e.preventDefault()
-        const id = e.target.id.value
-        const name = e.target.name.value
-        const age = e.target.age.value
-        const data={name,age}
-        await axios.put('https://fsdbackend-b-1.onrender.com/users/${id}',data)
-        alert("Success")
-    }
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+        
+        const form = e.target;
+        const id = form.userId.value;
+        const name = form.name.value;
+        const age = form.age.value;
+        const users = { name, age };
 
-  return (
-    <div>
-      <h1>Update User</h1>
-      <form onSubmit={handleupdate}>
-        <label>
-          ID:
-          <input type="text" name="id"  />
-        </label>
-        <label>
-          Name:
-          <input type="text" name="name"  />
-        </label>
-        <label>
-          Age:
-          <input type="text" name="age"  />
-        </label>
-        <button type="submit">Update</button>
-      </form>
-    </div>
-  )
-}
+        try {
+            await axios.put(`http://localhost:9000/users/${id}`, users);
+            alert('User updated successfully');
+        } catch (error) {
+            alert('Error updating user: ' + error.message);
+        }
+    };
 
-export default Update
+    return (
+        <div>
+            <form onSubmit={handleUpdate}>
+                <label>
+                    User ID:
+                    <input type="text" placeholder="User ID" name="userId" required />
+                </label>
+                <br />
+                <label>
+                    Name:
+                    <input type="text" placeholder="Name" name="name" required />
+                </label>
+                <br />
+                <label>
+                    Age:
+                    <input type="number" placeholder="Age" name="age" required />
+                </label>
+                <br />
+                <button type="submit">Update</button>
+            </form>
+        </div>
+    );
+};
+
+export default Update;
