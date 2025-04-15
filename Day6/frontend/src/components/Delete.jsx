@@ -5,7 +5,7 @@ const Delete = () => {
         
         e.preventDefault();
         const id = e.target.id.value;
-        await axios.delete(`http://localhost:9000/users/${id}`)
+        await axios.delete(`https://fsdbackend-b-5.onrender.com/users/${id}`)
         alert('User deleted Succussfully')
     }
   return (
